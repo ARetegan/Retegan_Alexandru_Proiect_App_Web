@@ -1,0 +1,87 @@
+﻿@page
+@model Retegan_Alexandru_Proiect_App_Web.Pages.Orders.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Order.Buyer" class="control-label"></label>
+                <input asp-for="Order.Buyer" class="form-control" />
+                <span asp-validation-for="Order.Buyer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.Brand" class="control-label"></label>
+                <input asp-for="Order.Brand" class="form-control" />
+                <span asp-validation-for="Order.Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.Model" class="control-label"></label>
+                <input asp-for="Order.Model" class="form-control" />
+                <span asp-validation-for="Order.Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.Color" class="control-label"></label>
+                <input asp-for="Order.Color" class="form-control" />
+                <span asp-validation-for="Order.Color" class="text-danger"></span>
+            </div>
+            <label asp-for="Order.FuelID" class="control-label">Fuel Type</label>
+            <select asp-for="Order.FuelID" class="form-control" asp-items="ViewBag.FuelID">
+            </select>
+            <span asp-validation-for="Order.FuelID" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Order.Price" class="control-label"></label>
+                <input asp-for="Order.Price" class="form-control" />
+                <span asp-validation-for="Order.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Order.DeliveryDate" class="control-label"></label>
+                <input asp-for="Order.DeliveryDate" class="form-control" />
+                <span asp-validation-for="Order.DeliveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="table">
+                    <table>
+                        <tr>
+                            @{ int cnt = 0;
+                                foreach (var cat in Model.AssignedPackDataList)
+                                {
+                                    if (cnt++ % 3 == 0)
+                                    { 
+                                    @:</tr><tr> 
+                                    } 
+                                    @:<td> 
+                                        <input type="checkbox" 
+                                               name="selectedCourses" 
+                                               value="@cat.PackID" 
+                                               @(Html.Raw(cat.Assigned ? "checked=\"checked\"" : "")) /> 
+                                        @cat.PackID @: @cat.Name 
+                        @:</td> 
+                        } 
+                  @:</tr> 
+                        }
+                                </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
