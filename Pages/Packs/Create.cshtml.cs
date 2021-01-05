@@ -21,13 +21,12 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
 
         public IActionResult OnGet()
         {
-        ViewData["OrderID"] = new SelectList(_context.Order, "ID", "ID");
-        ViewData["PackID"] = new SelectList(_context.Set<Pack>(), "ID", "ID");
+        
             return Page();
         }
 
         [BindProperty]
-        public CarPack CarPack { get; set; }
+        public Pack Pack { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -38,7 +37,7 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
                 return Page();
             }
 
-            _context.CarPack.Add(CarPack);
+            _context.Pack.Add(Pack);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

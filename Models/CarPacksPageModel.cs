@@ -13,16 +13,16 @@ namespace Retegan_Alexandru_Proiect_App_Web.Models
         public List<AssignedPackData> AssignedPackDataList;
         public void PopulateAssignedPackData(Retegan_Alexandru_Proiect_App_WebContext context, Order order)
         {
-            var allPacks = context.CarPack; 
-            var CarPacks = new HashSet<int>(order.CarPacks.Select(c => c.OrderID)); 
+            var allPacks = context.Pack; 
+            var carPacks = new HashSet<int>(order.CarPacks.Select(c => c.OrderID)); 
             AssignedPackDataList = new List<AssignedPackData>(); 
             foreach (var cat in allPacks)
             {
                 AssignedPackDataList.Add(new AssignedPackData 
                 { 
                     PackID = cat.ID, 
-                    Name = cat.Pack.PackName,
-                    Assigned = CarPacks.Contains(cat.ID)
+                    Name = cat.PackName,
+                    Assigned = carPacks.Contains(cat.ID)
                 });
             }
         }
@@ -32,7 +32,7 @@ namespace Retegan_Alexandru_Proiect_App_Web.Models
 
             var selectedPacksHS = new HashSet<string>(selectedPacks);
             var carPacks = new HashSet<int>(orderToUpdate.CarPacks.Select(c => c.Pack.ID));
-            foreach (var cat in context.CarPack)
+            foreach (var cat in context.Pack)
             { if (selectedPacksHS.Contains(cat.ID.ToString()))
                 { if (!carPacks.Contains(cat.ID))
                     { orderToUpdate.CarPacks.Add(new CarPack

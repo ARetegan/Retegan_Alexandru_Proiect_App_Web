@@ -19,7 +19,7 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
             _context = context;
         }
 
-        public CarPack CarPack { get; set; }
+        public Pack Pack { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,11 +28,9 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
                 return NotFound();
             }
 
-            CarPack = await _context.CarPack
-                .Include(c => c.Order)
-                .Include(c => c.Pack).FirstOrDefaultAsync(m => m.ID == id);
+            Pack = await _context.Pack.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (CarPack == null)
+            if (Pack == null)
             {
                 return NotFound();
             }

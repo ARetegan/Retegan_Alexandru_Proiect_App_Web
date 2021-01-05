@@ -11,7 +11,9 @@ namespace Retegan_Alexandru_Proiect_App_Web.Models
     {
         public int ID { get; set; }
 
-        [Display(Name = "Buyer Name")]
+        [Display(Name = "Seller Name")]
+        [RegularExpression(@"^[A-Z][a-z]+\s[A-Z][a-z]+$", 
+        ErrorMessage = "Seller name must contain 2 words"), Required, StringLength(50, MinimumLength = 3)]
         public string Buyer { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
@@ -20,11 +22,11 @@ namespace Retegan_Alexandru_Proiect_App_Web.Models
         public int FuelID { get; set; }
         public Fuel Fuel { get; set; }
 
-        [Display(Name = "Maximum Price")]
+        [Display(Name = "Price")]
         public decimal Price { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "Estimated Delivery Date")]
+        [Display(Name = "Production Date")]
         public DateTime DeliveryDate { get; set; }
         public ICollection<CarPack> CarPacks { get; set; }
 

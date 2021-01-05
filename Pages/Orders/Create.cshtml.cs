@@ -50,11 +50,14 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Orders
                     newOrder.CarPacks.Add(catToAdd);
                 }
             }
-            if (await TryUpdateModelAsync<Order>(newOrder, "Book", i => i.Buyer, i => i.Brand, i => i.Model, i => i.Color, i => i.Fuel, i => i.Price, i => i.DeliveryDate)) 
+
+         
+            if (await TryUpdateModelAsync<Order>(newOrder, "Order", i => i.Buyer, i => i.Brand, i => i.Model, i => i.Color, i => i.FuelID, i => i.Price, i => i.DeliveryDate)) 
             { _context.Order.Add(newOrder); 
                 await _context.SaveChangesAsync(); 
                 return RedirectToPage("./Index"); }
 
+            
             PopulateAssignedPackData(_context, newOrder); return Page();
         }
     }

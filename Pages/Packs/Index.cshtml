@@ -2,10 +2,10 @@
 @model Retegan_Alexandru_Proiect_App_Web.Pages.Packs.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Optional packs:";
 }
 
-<h1>Index</h1>
+<h1>Optional packs:</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -13,23 +13,19 @@
 <table class="table">
     <thead>
         <tr>
+            
             <th>
-                @Html.DisplayNameFor(model => model.CarPack[0].Order)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CarPack[0].Pack)
+                @Html.DisplayNameFor(model => model.Pack[0].PackName)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.CarPack) {
+@foreach (var item in Model.Pack) {
         <tr>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.Order.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pack.ID)
+                @Html.DisplayFor(modelItem => item.PackName)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

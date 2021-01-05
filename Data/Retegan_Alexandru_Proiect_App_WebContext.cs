@@ -18,6 +18,6 @@ namespace Retegan_Alexandru_Proiect_App_Web.Data
 
         public DbSet<Retegan_Alexandru_Proiect_App_Web.Models.Fuel> Fuel { get; set; }
 
-        public DbSet<Retegan_Alexandru_Proiect_App_Web.Models.CarPack> CarPack { get; set; }
+        public DbSet<Retegan_Alexandru_Proiect_App_Web.Models.Pack> Pack { get; set; }
     }
 }

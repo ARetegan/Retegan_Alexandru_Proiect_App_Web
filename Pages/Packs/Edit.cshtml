@@ -13,17 +13,13 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CarPack.ID" />
+            <input type="hidden" asp-for="Pack.ID" />
             <div class="form-group">
-                <label asp-for="CarPack.OrderID" class="control-label"></label>
-                <select asp-for="CarPack.OrderID" class="form-control" asp-items="ViewBag.OrderID"></select>
-                <span asp-validation-for="CarPack.OrderID" class="text-danger"></span>
+                <label asp-for="Pack.PackName" class="control-label"></label>
+                <input asp-for="Pack.PackName" class="form-control"/>
+                
             </div>
-            <div class="form-group">
-                <label asp-for="CarPack.PackID" class="control-label"></label>
-                <select asp-for="CarPack.PackID" class="form-control" asp-items="ViewBag.PackID"></select>
-                <span asp-validation-for="CarPack.PackID" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

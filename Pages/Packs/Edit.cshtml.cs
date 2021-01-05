@@ -21,7 +21,7 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
         }
 
         [BindProperty]
-        public CarPack CarPack { get; set; }
+        public Pack Pack { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,16 +30,13 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
                 return NotFound();
             }
 
-            CarPack = await _context.CarPack
-                .Include(c => c.Order)
-                .Include(c => c.Pack).FirstOrDefaultAsync(m => m.ID == id);
+            Pack = await _context.Pack.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (CarPack == null)
+            if (Pack == null)
             {
                 return NotFound();
             }
-           ViewData["OrderID"] = new SelectList(_context.Order, "ID", "ID");
-           ViewData["PackID"] = new SelectList(_context.Set<Pack>(), "ID", "ID");
+          
             return Page();
         }
 
@@ -52,7 +49,7 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
                 return Page();
             }
 
-            _context.Attach(CarPack).State = EntityState.Modified;
+            _context.Attach(Pack).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +57,7 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarPackExists(CarPack.ID))
+                if (!CarPackExists(Pack.ID))
                 {
                     return NotFound();
                 }
@@ -75,7 +72,7 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
 
         private bool CarPackExists(int id)
         {
-            return _context.CarPack.Any(e => e.ID == id);
+            return _context.Pack.Any(e => e.ID == id);
         }
     }
 }

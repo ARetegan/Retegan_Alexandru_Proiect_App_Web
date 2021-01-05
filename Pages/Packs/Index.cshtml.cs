@@ -19,11 +19,11 @@ namespace Retegan_Alexandru_Proiect_App_Web.Pages.Packs
             _context = context;
         }
 
-        public IList<CarPack> CarPack { get;set; }
+        public IList<Pack> Pack { get;set; }
 
         public async Task OnGetAsync()
         {
-            CarPack = await _context.CarPack.Include(c => c.Order).Include(c => c.Pack).ToListAsync();
+            Pack = await _context.Pack.ToListAsync();
         }
     }
 }
